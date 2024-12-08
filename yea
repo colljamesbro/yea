@@ -1,0 +1,37 @@
+-- Load the image and detect the red color
+local targetColor = Color3.new(1, 0, 0) -- RGB for pure red
+
+-- Function to find the position of the color in an image
+function findRedColor(image)
+    for y = 0, image.Height - 1 do
+        for x = 0, image.Width - 1 do
+            local pixel = image:GetPixel(x, y)
+            if pixel == targetColor then
+                return Vector2.new(x, y)
+            end
+        end
+    end
+    return nil
+end
+
+-- Teleport to the color and click it
+function teleportAndClick(targetPosition)
+    if targetPosition then
+        -- Simulating teleport (replace with your platform's teleport logic)
+        game.Players.LocalPlayer.Character:MoveTo(targetPosition)
+
+        -- Simulating click (adjust according to your platform's input methods)
+        print("Clicked at position: " .. tostring(targetPosition))
+    else
+        print("Red color not found!")
+    end
+end
+
+-- Replace with your method to load an image
+local image = loadImage("path_to_image") -- Add your method to load the PNG image
+
+-- Find the red color
+local redPosition = findRedColor(image)
+
+-- Execute teleport and click
+teleportAndClick(redPosition)
